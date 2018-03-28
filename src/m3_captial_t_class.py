@@ -235,25 +235,10 @@ class CapitalT(object):
           :type dx: int
           :type dy: int
         """
-        rectv = self.v_rect
-        recth = self.h_rect
-        v1 = rectv.get_upper_left_corner()
-        v1.x = v1.x + dx
-        v1.y = v1.y + dy
-        v2 = rectv.get_lower_right_corner()
-        v2.x = v2.x + dx
-        v2.y = v2.y + dy
-        h1 = recth.get_upper_left_corner()
-        h1.x = h1.x + dx
-        h1.y = h1.y + dy
-        h2 = recth.get_lower_right_corner()
-        h2.x = h2.x + dx
-        h2.y = h2.y + dy
-        self.v_rect = rg.Rectangle(v1, v2)
-        self.h_rect = rg.Rectangle(h1, h2)
-
+        self.h_rect.move_by(dx, dy)
+        self.v_rect.move_by(dx, dy)
         # --------------------------------------------------------------
-        # TODO: 6.
+        # DONE: 6.
         #   READ the above specification, including the Example.
         #   Implement and test this method by uncommenting the appropriate
         #     run_test method in main. Compare the graphics window to
@@ -280,10 +265,17 @@ class CapitalT(object):
         Type hints:
           :rtype: CapitalT
         """
-        capitalT = CapitalT(self.intersection_center, self.)
-        return capitalT
+        cloneh = self.h_rect
+        clonev = self.v_rect
+        height = clonev.get_height()
+        width = cloneh.get_width()
+        thick = cloneh.get_height()
+        center = cloneh.get_center()
+        capitalt = CapitalT(center, width, height, thick)
+        capitalt.set_colors(self.h_rect.fill_color, self.h_rect.outline_color)
+        return capitalt
         # --------------------------------------------------------------
-        # TODO: 7.
+        # DONE: 7.
         #   READ the above specification, including the Example.
         #   Implement and test this method by uncommenting the appropriate
         #     run_test method in main. Compare the graphics window to
